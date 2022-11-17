@@ -6,25 +6,32 @@ import org.junit.*;
 public class TestListExamples {
   // Write your grading tests here!
   @Test
-  public void testFilter(){
-      
-      ListExamples myList = new ListExamples();
+    public void testFilter() {
 
-      List<String>stringToCheck = new ArrayList<>();
-      stringToCheck.add("b");
+      //Implementing StringChecker to pass through
+      StringChecker sc = new StringChecker() {
+        public boolean checkString(String s){
+          if(s.contains("b")) {
+            return true;
+          }
+            return false;
+        }
+    };
       
+      List<String>inputList = new ArrayList<>();
+      inputList.add("banana");  
+      inputList.add("bandana");
+      inputList.add("bandaid");
+      inputList.add("crash");
+
       List<String>checkExpected = new ArrayList<>();
       checkExpected.add("banana");
       checkExpected.add("bandana");
       checkExpected.add("bandaid");
 
-      List<String>input1 = new ArrayList<>();
-      input1.add("banana");  
-      input1.add("bandana");
-      input1.add("bandaid");
-      input1.add("crash");
+      
 
-      assertEquals(checkExpected, ListExamples.filter(input1, stringToCheck));
+      assertEquals(checkExpected, ListExamples.filter(inputList, sc));
 
   }
 
